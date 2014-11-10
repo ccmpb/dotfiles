@@ -1,5 +1,4 @@
-set ai
-
+et ai
 set showmode
 set ruler
 syntax on 
@@ -36,6 +35,7 @@ nnoremap  :set nonumber!:set foldcolumn=0
 
 set go-=L
 
+" leader shortcuts...
 let mapleader=","
 
 nnoremap <leader><space> :noh<cr>
@@ -45,16 +45,29 @@ nnoremap <leader>1 :b1<cr>
 " T-Comment Shortcut
 map <leader>c <c-_><c-_>
 
+"split mappings
 map <leader>v :vsplit<cr>
 map <leader>h :split<cr>
-map <leader>b :Breakpoint<cr>
-map <leader>t :TlistToggle<cr>
-map <leader>n :NERDTreeToggle<cr>
-map <leader>d :r!date<cr>
-" map <leader>C :g/var_dump/norm gcc<cr>
-map <leader>C "+y 
-" map <leader>c "+y
 
+" vdebug breakpoint
+map <leader>b :Breakpoint<cr>
+
+" taglist
+map <leader>t :TlistToggle<cr>
+
+" nertree
+map <leader>n :NERDTreeToggle<cr>
+
+" quick insert date
+map <leader>d :r!date<cr>
+
+" comment out var dumps
+map <leader>C :g/var_dump/norm gcc<cr>
+
+" copy to clipboard
+map <leader>y "+y 
+
+" spelling
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 map <leader>S z=
 
@@ -64,15 +77,24 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" hide buffers instead of closing them.  (This way you don't have to save when switching between buffers"
+" toggle paste mode  (turns off auto indent)
+set pastetoggle=<leader>p
+
+" hide buffers instead of closing them.  
+" (This way you don't have to save when switching between buffers)
 set hidden
 
 " autosource the vimrc when it changes
 autocmd! bufwritepost .vimrc source % 
+
 " enable colours
 set t_Co=256
-color jellybeans 
 
+" colour scheme
+set background=dark
+colorscheme jellybeans
+
+" pathogen settings
 call pathogen#infect()
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
@@ -80,38 +102,23 @@ call pathogen#runtime_append_all_bundles()
 " Always show the status line
 set laststatus=2
 
-" php syntax check
-"map <C-B> :!php -l %<CR>
-
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'rw'
 " don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/vendor/**
 
-"set showtabline=2
-
-
 " completion options
 filetype plugin on
-"au FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
-"let g:SuperTabDefaultCompletionType = "\<c-x>\<c-o>"
-"autocmd vimenter * NERDTree
-"autocmd vimenter * if !argc() | NERDTree | endif
 
 " macvim settings
 set guioptions-=r
 set guifont=Monaco:h13
 set antialias
 if has("gui_macvim") 
-    set transparency=10
+    set transparency=5
 endif
-
-
-"":nnoremap <Tab> :bnext<CR>
-"":nnoremap <S-Tab> :bprevious<CR>
-"let g:miniBufExplForceSyntaxEnable=1
 
 " hate the beeping
 set visualbell
