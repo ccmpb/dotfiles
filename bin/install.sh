@@ -16,4 +16,8 @@ case "$1" in
         cp ~/.bashrc ~/.bashrc.last
         cp ../.bashrc ~/.bashrc
     ;;
+    config)
+        cp ~/.config ~/.config.last
+        cp -r ../confg ~/.config
+    ;;
 esac
