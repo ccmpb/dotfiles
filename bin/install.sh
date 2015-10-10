@@ -20,4 +20,9 @@ case "$1" in
         cp ~/.config ~/.config.last
         cp -r ../confg ~/.config
     ;;
+    fonts)
+        cp -r ~/.fonts ~/.fonts.last
+        cp -r ../fonts ~/.fonts
+        fc-cache -vf ~/.fonts
+    ;;
 esac
