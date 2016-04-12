@@ -1,16 +1,25 @@
 #!/usr/bin/env bash
 
+VIMHOME=~/.vim
+VIMRC=~/.vimrc
+
 case "$1" in
     tmux) 
         cp ~/.tmux.conf ~/.tmux.conf.last 
         cp ../.tmux.conf ~/.tmux.conf
     ;;
     vim) 
-        cp -r ~/.vim ~/.vim.last
-        cp -r ../vim ~/.vim
+	if [ -f $VIMHOME ]; 
+	then 
+		cp -r $VIMHOME $VIMHOME.last
+	fi
+        cp -r ../vim $VIMHOME 
 
-        cp ~/.vimrc ~/.vimrc.last
-        cp .vimrc ~/.vimrc
+	if [ -f $VIMRC ];
+	then
+		cp $VIMRC $VIMRC.last 
+	fi
+        cp ../.vimrc $VIMRC 
     ;;
     bash) 
         cp ~/.bashrc ~/.bashrc.last
