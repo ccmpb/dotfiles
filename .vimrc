@@ -1,4 +1,4 @@
-et ai
+set ai
 set showmode
 set ruler
 syntax on 
