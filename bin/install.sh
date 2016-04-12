@@ -13,7 +13,7 @@ case "$1" in
 	then 
 		cp -r $VIMHOME $VIMHOME.last
 	fi
-        cp -r ../vim $VIMHOME 
+        cp -r ../vim/* $VIMHOME 
 
 	if [ -f $VIMRC ];
 	then
