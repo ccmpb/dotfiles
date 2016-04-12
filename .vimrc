@@ -92,7 +92,7 @@ set t_Co=256
 
 " colour scheme
 set background=dark
-colorscheme jellybeans
+colorscheme monochrome
 
 " pathogen settings
 call pathogen#infect()
