@@ -161,3 +161,8 @@ let g:vdebug_options = {
 \ 'debug_file' : '/Users/colin/.vim/vdebug.log',
 \ 'debug_file_level': '2'
 \}
+
+" Fix wrapline colour 
+highlight NonText ctermbg=none
+hi Normal ctermbg=none
+highlight ColorColumn ctermbg=0
