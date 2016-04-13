@@ -4,38 +4,54 @@
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
+# tmux
+TMUXCONF=~/.tmux.conf
+
+# vim
 VIMHOME=~/.vim
 VIMRC=~/.vimrc
 
+# bash
+BASHRC=~/.bashrc
+
+# config
+CONFIG=~/.config
+
+# fonts
+FONTS=~/.fonts
+
+# Make a backup of a file (if it exists)
+backup () {
+    if [ -f $1 ];
+    then
+        cp $1 $1.last 
+    fi
+}
+
 case "$1" in
     tmux) 
-        cp ~/.tmux.conf ~/.tmux.conf.last 
+        backup $TMUXCONF
         cp ../.tmux.conf ~/.tmux.conf
     ;;
     vim) 
-	if [ -f $VIMHOME ]; 
-	then 
-		cp -r $VIMHOME $VIMHOME.last
-	fi
+        backup $VIMHOME
         cp -r ../vim/* $VIMHOME 
-
-	if [ -f $VIMRC ];
-	then
-		cp $VIMRC $VIMRC.last 
-	fi
+        
+        backup $VIMRC
         cp ../.vimrc $VIMRC 
     ;;
     bash) 
-        cp ~/.bashrc ~/.bashrc.last
+        backup $BASHRC
         cp ../.bashrc ~/.bashrc
     ;;
     config)
-        cp ~/.config ~/.config.last
+        backup $CONFIG
         cp -r ../confg ~/.config
     ;;
     fonts)
-        cp -r ~/.fonts ~/.fonts.last
+        backup $FONTS
         cp -r ../fonts ~/.fonts
         fc-cache -vf ~/.fonts
     ;;
 esac
+
