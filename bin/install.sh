@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# get scritpath
+SCRIPT=`realpath $0`
+SCRIPTPATH=`dirname $SCRIPT`
+
 VIMHOME=~/.vim
 VIMRC=~/.vimrc
 
