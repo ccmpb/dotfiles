@@ -31,26 +31,26 @@ backup () {
 case "$1" in
     tmux) 
         backup $TMUXCONF
-        cp ../.tmux.conf ~/.tmux.conf
+        cp $SCRIPTPATH/../.tmux.conf $TMUXCONF
     ;;
     vim) 
         backup $VIMHOME
-        cp -r ../vim/* $VIMHOME 
+        cp -r $SCRIPTPATH/../vim/* $VIMHOME 
         
         backup $VIMRC
-        cp ../.vimrc $VIMRC 
+        cp $SCRIPTPATH/../.vimrc $VIMRC 
     ;;
     bash) 
         backup $BASHRC
-        cp ../.bashrc ~/.bashrc
+        cp $SCRIPTPATH/../.bashrc ~/.bashrc
     ;;
     config)
         backup $CONFIG
-        cp -r ../confg ~/.config
+        cp -r $SCRIPTPATH/../confg ~/.config
     ;;
     fonts)
         backup $FONTS
-        cp -r ../fonts ~/.fonts
+        cp -r $SCRIPTPATH/../fonts ~/.fonts
         fc-cache -vf ~/.fonts
     ;;
 esac
