@@ -148,20 +148,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsEditSplit="vertical"
 map <leader>e :UltiSnipsEdit<cr>
 
-" debugger settings
-let g:vdebug_options = {
-\ 'path_maps': {"/var/www/colin.fireworkscrm.com": "/Users/colin/devel/fireworks",
-\ "/usr/share/php/libzend-framework-php/": "/Users/colin/lib/"}, 
-\ 'server': '192.168.237.21',
-\ 'port': '9001',
-\ 'timeout': '30',
-\ 'continous_mode': '0',
-\ 'watch_window_style':  'compact',
-\ 'break_on_open': '0',
-\ 'debug_file' : '/Users/colin/.vim/vdebug.log',
-\ 'debug_file_level': '2'
-\}
-
 " Fix wrapline colour 
 highlight NonText ctermbg=none
 hi Normal ctermbg=none
