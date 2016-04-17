@@ -4,6 +4,9 @@
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
+# git
+GITCONF=~/.gitconfig
+
 # tmux
 TMUXCONF=~/.tmux.conf
 
@@ -29,6 +32,11 @@ backup () {
 }
 
 case "$1" in
+    git)
+        backup $GITCONF
+        cp $SCRIPTPATH/../.gitconfig $GITCONF
+    ;;
+
     tmux) 
         backup $TMUXCONF
         cp $SCRIPTPATH/../.tmux.conf $TMUXCONF
