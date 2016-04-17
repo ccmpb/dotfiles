@@ -1,0 +1,14 @@
+[color]
+    ui = true
+[alias]
+    lg --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+    pr = pull --rebase
+    ll = log --oneline --abbrev-commit --all --graph --decorate
+    up = "!git remote update -p; git merge --ff-only @{u}"
+
+[pull]
+    rebase = true
