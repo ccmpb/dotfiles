@@ -34,9 +34,15 @@ case "$1" in
         cp $SCRIPTPATH/../.tmux.conf $TMUXCONF
     ;;
     vim) 
+        # update vim plugins 
+        cd $SCRIPTPATH/..
+        git submodule update --init --recursive
+
+        # vim folder
         backup $VIMHOME
         cp -r $SCRIPTPATH/../vim/* $VIMHOME 
-        
+       
+        # vimrc
         backup $VIMRC
         cp $SCRIPTPATH/../.vimrc $VIMRC 
     ;;
