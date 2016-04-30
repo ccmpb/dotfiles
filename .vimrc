@@ -105,7 +105,7 @@ set laststatus=2
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'rw'
 " don't want to pull up these folders/files when calling CtrlP
-set wildignore+=*/vendor/**
+set wildignore+=*/vendor/**,*/node_modules/**
 
 " completion options
 filetype plugin on
