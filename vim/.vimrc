@@ -97,7 +97,7 @@ colorscheme monochrome
 " pathogen settings
 call pathogen#infect()
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 " Always show the status line
 set laststatus=2
@@ -152,3 +152,30 @@ map <leader>e :UltiSnipsEdit<cr>
 highlight NonText ctermbg=none
 hi Normal ctermbg=none
 highlight ColorColumn ctermbg=0
+
+au FileType javascript setlocal ts=2 sw=2 sts=2 noexpandtab
+au FileType html setlocal ts=2 sw=2 sts=2 noexpandtab
+ 
+let g:syntastic_javascript_checkers=['eslint']
+ 
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+ 
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab | 
+    \ set autoindent | 
+    \ set fileformat=unix |
+ 
+ 
+let NERDTreeIgnore = ['\.pyc$']
+ 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|\.pyc'
+ 
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
