@@ -165,6 +165,18 @@ let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
 
+function! FileSize()
+ let bytes = getfsize(expand("%:p"))
+ if bytes <= 0
+   return "new file"
+ endif
+ if bytes<1024
+   return bytes."b"
+ else
+   return (bytes/1024)."Kb"
+ endif
+endfunction
+
 " Always show the status line
 set laststatus=2
 set statusline =
@@ -175,7 +187,7 @@ set statusline+=%*
 
 set statusline +=\%{fugitive#statusline()} " Name of the current branch (needs fugitive.vim)
 set statusline +=[%n] " Buffer number
-set statusline +=%f\ %h%m%r%w " " File description
+set statusline +=%f\ %h%m%r%w%{FileSize()}" " File description
 set statusline +=%=%-14.(%l,%c%)" " Line, column and percentage
 set statusline +=%y       " " Filetype
 set statusline +=[%{strlen(&fenc)?&fenc:'none'}]
@@ -185,3 +197,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
