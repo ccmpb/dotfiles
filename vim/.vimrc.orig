@@ -97,7 +97,7 @@ colorscheme monochrome
 " pathogen settings
 call pathogen#infect()
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -151,6 +151,34 @@ highlight NonText ctermbg=none
 hi Normal ctermbg=none
 highlight ColorColumn ctermbg=0
 
+<<<<<<< HEAD
+au FileType javascript setlocal ts=2 sw=2 sts=2 noexpandtab
+au FileType html setlocal ts=2 sw=2 sts=2 noexpandtab
+ 
+let g:syntastic_javascript_checkers=['eslint']
+ 
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+ 
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab | 
+    \ set autoindent | 
+    \ set fileformat=unix |
+ 
+ 
+let NERDTreeIgnore = ['\.pyc$']
+ 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|\.pyc'
+ 
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+=======
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
 
@@ -185,3 +213,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+>>>>>>> Update statusline
