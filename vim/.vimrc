@@ -2,7 +2,7 @@ set ai
 set showmode
 set ruler
 syntax on 
-set mouse=a
+set mouse=
 
 " tabs
 set ts=4
@@ -92,7 +92,7 @@ set t_Co=256
 
 " colour scheme
 set background=dark
-colorscheme hemisu
+colorscheme monochrome
 
 " pathogen settings
 call pathogen#infect()
@@ -179,11 +179,11 @@ endfunction
 
 " Always show the status line
 set laststatus=2
-set statusline =
+" set statusline =
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
