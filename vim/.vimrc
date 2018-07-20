@@ -30,6 +30,7 @@ set tw=80
 set colorcolumn=80
 " highlight ColorColumn ctermbg=100
 nnoremap  :set nonumber!:set foldcolumn=0
+set cursorline
 
 "set modelines=0
 
@@ -92,7 +93,7 @@ set t_Co=256
 
 " colour scheme
 set background=dark
-colorscheme monochrome
+colorscheme hemisu
 
 " pathogen settings
 call pathogen#infect()
@@ -145,6 +146,16 @@ let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsEditSplit="vertical"
 map <leader>e :UltiSnipsEdit<cr>
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " Fix wrapline colour 
 highlight NonText ctermbg=none
