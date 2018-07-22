@@ -164,6 +164,7 @@ highlight ColorColumn ctermbg=0
 
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
+filetype indent on
 
 " for mutt
 au BufRead /tmp/mutt-* set tw=72
