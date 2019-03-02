@@ -36,13 +36,13 @@ set cursorline
 
 set go-=L
 
-" leader shortcuts...
-let mapleader=","
 
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>1 :b1<cr>
 
+" leader shortcuts...
+let mapleader=","
 " T-Comment Shortcut
 map <leader>c <c-_><c-_>
 
@@ -93,7 +93,7 @@ set t_Co=256
 
 " colour scheme
 set background=dark
-colorscheme hemisu
+colorscheme hemisu 
 
 " pathogen settings
 call pathogen#infect()
@@ -198,8 +198,13 @@ set laststatus=2
 " set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_error_symbol = '✗✗'
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
 
 command! Maketags !ctags -R
