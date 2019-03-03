@@ -100,9 +100,9 @@ call pathogen#infect()
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'rw'
+
 " don't want to pull up these folders/files when calling CtrlP
 set wildignore+=*/vendor/**,*/node_modules/**,*.pyc,*venv/**
 
@@ -147,11 +147,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsEditSplit="vertical"
 map <leader>e :UltiSnipsEdit<cr>
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -169,12 +164,6 @@ filetype indent on
 " for mutt
 au BufRead /tmp/mutt-* set tw=72
 
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline#extensions#tabline#enabled = 1
-
 set encoding=utf-8
 
 function! FileSize()
@@ -191,11 +180,6 @@ endfunction
 
 " Always show the status line
 set laststatus=2
-" set statusline =
-
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
