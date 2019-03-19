@@ -149,6 +149,7 @@ export PASSWORD_STORE_DIR=~/Dropbox/.p
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 cd() { builtin cd "$@"; ls; } # Always list directory contents upon 'cd'
+f () { /usr/bin/find . -name "$@" ; } 
 
 export TERM=xterm-256color
 
