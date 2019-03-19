@@ -116,7 +116,6 @@ export PATH=~/.composer/vendor/bin:$PATH
 alias l='ls -alh'
 alias grep='grep --color -n'
 alias dc='docker-compose'
-# alias cd='cd "$@" && ls' # cd and ls
 alias vi='vim'
 alias p='ps aux'
 alias k='kill'
@@ -149,6 +148,7 @@ export HISTCONTROL=ignoreboth
 export PASSWORD_STORE_DIR=~/Dropbox/.p
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+cd() { builtin cd "$@"; ls; } # Always list directory contents upon 'cd'
 
 export TERM=xterm-256color
 
