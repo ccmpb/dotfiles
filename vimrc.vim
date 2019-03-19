@@ -123,7 +123,7 @@ set wildignore+=*/vendor/**,*/node_modules/**,*.pyc,*venv/**
 
 " completion options
 filetype plugin on
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+" autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 
 " hate the beeping
