@@ -4,10 +4,6 @@ DOTFILE_HOME=`pwd`
 
 echo 'updating dotfiles...'
 
-# submodule update
-git submodule update --init --recursive
-git submodule update --init --remote
-
 # backup originals
 mv -vn ~/.bash_profile ~/.bash_profile.bk
 mv -vn ~/.vimrc ~/.vimrc.bk
