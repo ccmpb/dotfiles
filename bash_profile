@@ -116,8 +116,11 @@ export PATH=~/.composer/vendor/bin:$PATH
 alias l='ls -alh'
 alias grep='grep --color -n'
 alias dc='docker-compose'
+# alias cd='cd "$@" && ls' # cd and ls
+alias vi='vim'
+alias p='ps aux'
+alias k='kill'
 
-# alias cd='cd "$@" && ls'
 
 #history things
 alias h=history
@@ -159,3 +162,5 @@ export PATH
 export REVIEW_BASE=master
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+export PIPENV_IGNORE_VIRTUALENVS=1
