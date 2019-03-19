@@ -19,6 +19,7 @@ function pre_prompt {
 
 PROMPT_COMMAND=pre_prompt
 
+export EDITOR=vim
 export GIT_EDITOR=vim
 
 export black="\[\033[0;38;5;0m\]"

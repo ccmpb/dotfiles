@@ -1,12 +1,32 @@
+set encoding=utf-8
+
+" Plugins
+"
+call plug#begin('~/dotfiles/vim/plugged')
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'SirVer/ultisnips'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'honza/vim-snippets'
+Plug 'w0rp/ale'
+
+call plug#end()
+
 set ai
 set showmode
 set ruler
-syntax on 
+syntax on
 set mouse=
 
 " tabs
 set ts=4
-set softtabstop=4 
+set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
@@ -66,7 +86,7 @@ map <leader>d :r!date<cr>
 map <leader>C :g/var_dump/norm gcc<cr>
 
 " copy to clipboard
-map <leader>y "+y 
+map <leader>y "+y
 
 " spelling
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
@@ -81,24 +101,19 @@ map <C-l> <C-W>l
 " toggle paste mode  (turns off auto indent)
 set pastetoggle=<leader>p
 
-" hide buffers instead of closing them.  
+" hide buffers instead of closing them.
 " (This way you don't have to save when switching between buffers)
 set hidden
 
 " autosource the vimrc when it changes
-autocmd! bufwritepost .vimrc source % 
+autocmd! bufwritepost .vimrc source %
 
 " enable colours
 set t_Co=256
 
 " colour scheme
 set background=dark
-colorscheme hemisu 
-
-" pathogen settings
-call pathogen#infect()
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+colorscheme hemisu
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'rw'
@@ -111,14 +126,6 @@ filetype plugin on
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 
-" macvim settings
-set guioptions-=r
-set guifont=Monaco:h13
-set antialias
-if has("gui_macvim") 
-    set transparency=5
-endif
-
 " hate the beeping
 set visualbell
 set noerrorbells
@@ -126,33 +133,33 @@ set noerrorbells
 " new vertical splits open on the right side
 set splitright
 
-" Automatically read files when they were changed on the filesystem 
+" Automatically read files when they were changed on the filesystem
 set autoread
 
 " phpdoc settings
-autocmd FileType php inoremap <C-d> <ESC>:call PhpDocSingle()<CR>i
-autocmd FileType php inoremap <C-d> <ESC>:call PhpDocSingle()<CR>
-autocmd FileType php inoremap <C-d> <ESC>:call PhpDocRange()<CR>
+" autocmd FileType php inoremap <C-d> <ESC>:call PhpDocSingle()<CR>i
+" autocmd FileType php inoremap <C-d> <ESC>:call PhpDocSingle()<CR>
+" autocmd FileType php inoremap <C-d> <ESC>:call PhpDocRange()<CR>
 
 "Tag list settings
-let Tlist_Use_Right_Window=1
-let Tlist_Show_One_File=1
-let Tlist_Inc_Winwidth=1
-let Tlist_Compact_Format=1
-let Tlist_Highlight_Tag_On_BufEnter=1
+" let Tlist_Use_Right_Window=1
+" let Tlist_Show_One_File=1
+" let Tlist_Inc_Winwidth=1
+" let Tlist_Compact_Format=1
+" let Tlist_Highlight_Tag_On_BufEnter=1
 
 " Ultisnip settings
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<Tab>"
+" let g:UltiSnipsJumpForwardTrigger="<C-b>"
+" let g:UltiSnipsEditSplit="vertical"
 map <leader>e :UltiSnipsEdit<cr>
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" Fix wrapline colour 
+" Fix wrapline colour
 highlight NonText ctermbg=none
 hi Normal ctermbg=none
 highlight ColorColumn ctermbg=0
@@ -164,7 +171,6 @@ filetype indent on
 " for mutt
 au BufRead /tmp/mutt-* set tw=72
 
-set encoding=utf-8
 
 function! FileSize()
  let bytes = getfsize(expand("%:p"))
