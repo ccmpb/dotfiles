@@ -1,5 +1,6 @@
 set encoding=utf-8
 
+
 " Plugins
 "
 call plug#begin('~/dotfiles/vim/plugged')
@@ -15,6 +16,14 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
+Plug 'LucHermitte/vim-refactor'
+Plug 'python-rope/ropevim'
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+let g:deoplete#enable_at_startup = 1
+
 
 call plug#end()
 
@@ -51,6 +60,10 @@ set colorcolumn=80
 " highlight ColorColumn ctermbg=100
 nnoremap  :set nonumber!:set foldcolumn=0
 set cursorline
+
+" colour scheme
+set background=dark
+colorscheme hemisu
 
 "set modelines=0
 
@@ -109,11 +122,8 @@ set hidden
 autocmd! bufwritepost .vimrc source %
 
 " enable colours
-set t_Co=256
+" set t_Co=256
 
-" colour scheme
-set background=dark
-colorscheme hemisu
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'rw'
