@@ -117,7 +117,8 @@ export PATH=~/.composer/vendor/bin:$PATH
 alias l='ls -alh'
 alias grep='grep --color -n'
 alias dc='docker-compose'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias p='ps aux'
 alias k='kill'
 
