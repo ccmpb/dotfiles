@@ -197,15 +197,18 @@ endfunction
 " Always show the status line
 set laststatus=2
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_error_symbol = '✗✗'
-let g:syntastic_style_error_symbol = '✠✠'
-let g:syntastic_warning_symbol = '∆∆'
-let g:syntastic_style_warning_symbol = '≈≈'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_error_symbol = '✗✗'
+" let g:syntastic_style_error_symbol = '✠✠'
+" let g:syntastic_warning_symbol = '∆∆'
+" let g:syntastic_style_warning_symbol = '≈≈'
+
+let g:ale_sign_error = '✗✗'
+let g:ale_sign_warning = '∆∆'
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -222,3 +225,5 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
 command! Maketags !ctags -R
+
+let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
