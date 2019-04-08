@@ -15,7 +15,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'honza/vim-snippets'
+
 Plug 'w0rp/ale'
+let g:ale_python_pylint_options = '--load-plugins pylint_django'
+
 Plug 'LucHermitte/vim-refactor'
 Plug 'python-rope/ropevim'
 
