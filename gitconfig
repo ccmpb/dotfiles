@@ -3,6 +3,7 @@
     email = colin@elusivelabs.com
 [core]
     editor = vim
+    excludesfile = ~/.gitignore_global   
 [color]
     ui = true
 [alias]
@@ -12,6 +13,7 @@
     br = branch
     pr = pull --rebase
     ll = log --oneline --abbrev-commit --all --graph --decorate
+    l = log --oneline --decorate
     up = "!git remote update -p; git merge --ff-only @{u}"
 
 [pull]
