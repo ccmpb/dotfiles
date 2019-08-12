@@ -229,5 +229,6 @@ set undoreload=10000        " number of lines to save for undo
 
 command! Maketags !ctags -R
 
-let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
+" let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.6/bin/python3'
+let g:ale_python_flake8_executable = 'python3'
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
