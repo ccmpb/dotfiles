@@ -5,6 +5,11 @@
 #cd "$(dirname "${BASH_SOURCE}")";
 #git pull origin master;
 
+if [[ ! -d ~/.oh-my-zsh ]]
+then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
+fi
+
 function doIt() {
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
