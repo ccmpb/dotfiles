@@ -22,9 +22,9 @@ let g:ale_python_pylint_options = '--load-plugins pylint_django'
 Plug 'LucHermitte/vim-refactor'
 Plug 'python-rope/ropevim'
 
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 let g:deoplete#enable_at_startup = 1
 
 
