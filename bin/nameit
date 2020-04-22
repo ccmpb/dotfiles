@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+WORDS=2
+NAME=()
+NUM=0
+
+function join { local IFS="$1"; shift; echo "$*"; }
+usage() { echo "Usage: $0 [ -w WORDS ] [ -n SIZE ]" 1>&2; exit 1; }
+
+while getopts "w:n" opt; do
+    case "${opt}" in
+        w)
+            WORDS=${OPTARG}
+            ;;
+        n)
+            NUM=1
+            ;;
+        *) usage 
+            ;;
+    esac
+done
+shift $((OPTIND -1))
+
+COUNT=0
+while [ $COUNT -lt $WORDS ]; do 
+    NAME+=(`shuf -n1  /usr/share/dict/words | tr '[:upper:]' '[:lower:]'`)
+    let COUNT+=1
+done
+
+if [ $NUM -gt 0 ]
+then
+    NAME+=(`shuf -i 100-1000 -n 1`)
+fi
+
+join - "${NAME[@]}"
+exit 0
