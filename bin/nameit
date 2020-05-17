@@ -4,6 +4,9 @@ WORDS=2
 NAME=()
 NUM=0
 
+WORD_CMD="shuf -n1  /usr/share/dict/words | tr '[:upper:]' '[:lower:]'"
+NUM_CMD="shuf -i 100-1000 -n 1"
+
 function join { local IFS="$1"; shift; echo "$*"; }
 usage() { echo "Usage: $0 [ -n NUMBER_OF_WORDS ] [ -i --include-num ]" 1>&2; }
 
@@ -27,13 +30,13 @@ shift $((OPTIND -1))
 
 COUNT=0
 while [ $COUNT -lt $WORDS ]; do 
-    NAME+=(`shuf -n1  /usr/share/dict/words | tr '[:upper:]' '[:lower:]'`)
+    NAME+=(`eval ${WORD_CMD}`)
     let COUNT+=1
 done
 
 if [ $NUM -gt 0 ]
 then
-    NAME+=(`shuf -i 100-1000 -n 1`)
+    NAME+=(`eval ${NUM_CMD}`)
 fi
 
 join - "${NAME[@]}"
