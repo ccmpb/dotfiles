@@ -5,14 +5,14 @@ NAME=()
 NUM=0
 
 function join { local IFS="$1"; shift; echo "$*"; }
-usage() { echo "Usage: $0 [ -w WORDS ] [ -n SIZE ]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [ -n NUMBER_OF_WORDS ] [ -i --include-num ]" 1>&2; exit 1; }
 
-while getopts "w:n" opt; do
+while getopts "n:i" opt; do
     case "${opt}" in
-        w)
+        n)
             WORDS=${OPTARG}
             ;;
-        n)
+        i)
             NUM=1
             ;;
         *) usage 
