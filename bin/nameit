@@ -3,14 +3,16 @@
 WORDS=2
 NAME=()
 NUM=0
+USE_TLD=0
+TLD=".com"
 
 WORD_CMD="shuf -n1  /usr/share/dict/words | tr '[:upper:]' '[:lower:]'"
 NUM_CMD="shuf -i 100-1000 -n 1"
 
 function join { local IFS="$1"; shift; echo "$*"; }
-usage() { echo "Usage: $0 [ -n NUMBER_OF_WORDS ] [ -i --include-num ]" 1>&2; }
+usage() { echo "Usage: $0 [ -n NUMBER_OF_WORDS ] [ -i --include-num ] [ -t TLD ] " 1>&2; }
 
-while getopts "n:ih" opt; do
+while getopts "n:iht:" opt; do
     case "${opt}" in
         h) usage
             exit 0
@@ -20,6 +22,10 @@ while getopts "n:ih" opt; do
             ;;
         i)
             NUM=1
+            ;;
+        t)
+            USE_TLD=1
+            echo ${OPTARG}
             ;;
         \?) usage 
             exit 1
@@ -39,5 +45,12 @@ then
     NAME+=(`eval ${NUM_CMD}`)
 fi
 
-join - "${NAME[@]}"
+result=$(join - ${NAME[@]})
+
+if [ $USE_TLD -gt 0 ]
+then
+    result+=$TLD
+fi
+
+echo $result
 exit 0
