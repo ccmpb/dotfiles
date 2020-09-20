@@ -51,7 +51,6 @@ highlight GitGutterDelete ctermfg=1
 highlight NonText ctermbg=none " Fix wrapline colour
 highlight clear SignColumn
 
-
 let NERDTreeIgnore = ['\.pyc$', '\.__pycache__$']
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:ack_use_cword_for_empty_search = 1
