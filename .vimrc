@@ -87,7 +87,6 @@ nnoremap  :set nonumber!:set foldcolumn=0
 nnoremap <Leader>g :Ack!<Space>
 nnoremap <leader>1 :b1<cr>
 nnoremap <leader><space> :noh<cr>
-nnoremap <leader>f :Rg<cr>
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 
