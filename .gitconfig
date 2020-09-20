@@ -1,6 +1,6 @@
 [user]
     name = Colin Campbell
-    email = colin@elusivelabs.com
+    email = ccampbell@tucows.com
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global   
