@@ -6,9 +6,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
-Plug 'mileszs/ack.vim'
-Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'plasticboy/vim-markdown'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
@@ -16,6 +15,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -28,21 +29,34 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
+autocmd FileType qf nnoremap <buffer><silent> <esc> :quit<cr>
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 
-cnoreabbrev Ack Ack!
+" cnoreabbrev Ack Ack!
 
-colorscheme gruvbox
+" set termguicolors
+" syntax on
+syntax enable
+set background=dark
+set t_Co=256 " enable colours
+colorscheme hemisu
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
 
-command! Maketags !ctags -R
 
-filetype indent on
-filetype on
-filetype plugin on
+
+command! Maketags !ctgas -R
+
+" filetype indent on
+" filetype on
+" filetype plugin on
+filetype plugin indent on
 
 hi Normal ctermbg=none
+" hi StatusLine ctermbg=darkgrey ctermfg=black
 highlight ColorColumn ctermbg=0
 highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
@@ -51,17 +65,15 @@ highlight GitGutterDelete ctermfg=1
 highlight NonText ctermbg=none " Fix wrapline colour
 highlight clear SignColumn
 
-let NERDTreeIgnore = ['\.pyc$', '\.__pycache__$']
+
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:ack_use_cword_for_empty_search = 1
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case --ignore-file ~/.gitignore_global'
-let g:airline_powerline_fonts = 1
-let g:airline_section_z = "%3p%% %l:%c"
-let g:airline_theme='gruvbox'
-let g:ale_python_flake8_executable = 'python3'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_working_path_mode = 'rw'
 let g:gitgutter_override_sign_column_highlight = 0
+let g:vim_markdown_folding_disabled = 1
 let mapleader=","
 
 map <C-h> <C-W>h
@@ -78,6 +90,7 @@ map <leader>n :NERDTreeToggle<cr>
 map <leader>t :TlistToggle<cr>
 map <leader>v :vsplit<cr>
 map <leader>y "+y
+nmap <C-m> <Plug>MarkdownPreviewToggle
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -89,14 +102,15 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 
+" set cursorline
 set ai
 set autoread
-set background=dark
+" set background=dark
 set bs=2
-set cmdheight=2 " Give more space for displaying messages.
+set backspace=indent,eol,start
+" set cmdheight=2 " Give more space for displaying messages.
 set colorcolumn=80
 set completeopt=longest,menuone
-set cursorline
 set encoding=utf-8
 set expandtab
 set go-=L
@@ -105,6 +119,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2 " Always show the status line
+set lazyredraw
 set mouse=
 set nobackup
 set noerrorbells
@@ -122,7 +137,6 @@ set showmode
 set smartcase
 set softtabstop=4
 set splitright
-set t_Co=256 " enable colours
 set ts=4
 set tw=80
 set undodir=$HOME/.vim/undo " where to save undo histories
@@ -133,28 +147,25 @@ set updatetime=100
 set visualbell
 set wildignore+=*/vendor/**,*/node_modules/**,*.pyc,*venv/**
 
-syntax on
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction" TextEdit might fail if hidden is not set.
-
 if has("patch-8.1.1564")
   set signcolumn=number
 else
   set signcolumn=no
 endif
+
+" figure out the color group under the cursor
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+set laststatus=2
