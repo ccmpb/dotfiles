@@ -1,11 +1,11 @@
 call plug#begin('~/dotfiles/vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'plasticboy/vim-markdown'
 Plug 'ryanoasis/vim-devicons'
@@ -17,6 +17,16 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'daylerees/colour-schemes'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
+Plug 'arcticicestudio/nord-vim'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -40,15 +50,14 @@ autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 " set termguicolors
 " syntax on
 syntax enable
-set background=dark
+" set background=dark
 set t_Co=256 " enable colours
-colorscheme hemisu
-let g:airline_theme = 'minimalist'
+colorscheme nord
+
+let g:airline_theme = 'nord'
 let g:airline_powerline_fonts = 1
 
-
-
-command! Maketags !ctgas -R
+command! Maketags !ctags -R
 
 " filetype indent on
 " filetype on
@@ -81,7 +90,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
 map <leader>S z=
-map <leader>b :Breakpoint<cr>
 map <leader>c <c-_><c-_> " T-Comment Shortcut
 map <leader>d :r!date<cr>
 map <leader>e :UltiSnipsEdit<cr>
@@ -108,7 +116,7 @@ set autoread
 " set background=dark
 set bs=2
 set backspace=indent,eol,start
-" set cmdheight=2 " Give more space for displaying messages.
+set cmdheight=1 " Give more space for displaying messages.
 set colorcolumn=80
 set completeopt=longest,menuone
 set encoding=utf-8
@@ -148,9 +156,28 @@ set visualbell
 set wildignore+=*/vendor/**,*/node_modules/**,*.pyc,*venv/**
 
 
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
 endfunction
 
 if has("patch-8.1.1564")
@@ -169,3 +196,7 @@ function! <SID>SynStack()
 endfunc
 
 set laststatus=2
+
+" let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
+" let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+" let g:fzf_layout = { 'down': '40%' }
