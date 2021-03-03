@@ -1,4 +1,4 @@
-call plug#begin('~/dotfiles/vim/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -17,16 +17,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'chriskempson/base16-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'daylerees/colour-schemes'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
+Plug 'wsdjeg/vim-http'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -50,7 +49,6 @@ autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 " set termguicolors
 " syntax on
 syntax enable
-" set background=dark
 set t_Co=256 " enable colours
 colorscheme nord
 
@@ -59,9 +57,6 @@ let g:airline_powerline_fonts = 1
 
 command! Maketags !ctags -R
 
-" filetype indent on
-" filetype on
-" filetype plugin on
 filetype plugin indent on
 
 hi Normal ctermbg=none
@@ -197,6 +192,26 @@ endfunc
 
 set laststatus=2
 
-" let g:fzf_preview_window = ['down:40%:hidden', 'ctrl-/']
-" let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-" let g:fzf_layout = { 'down': '40%' }
+let g:conflict_marker_enable_highlight = 1
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+let g:fzf_layout = { 'down': '~40%' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+
+let g:vim_http_split_vertically = 1
