@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
+#
+#  _                _
+# | |__   __ _  ___| | ___   _ _ __
+# | '_ \ / _` |/ __| |/ / | | | '_ \
+# | |_) | (_| | (__|   <| |_| | |_) |
+# |_.__/ \__,_|\___|_|\_\\__,_| .__/
+#                             |_|
+#
 
-RSYNC=rsync -zavh
-DEST=/Volumes/ccdata
+DEST=/Volumes/ccdata/mbp
+BKLIST=(~/bin ~/devel ~/images ~/docs ~/Documents ~/Library/Thunderbird) 
 
-# photos
-$RSYNC ~/Pictures/Photos\ Library.photoslibrary/ $DEST/photos/colin
+if [ ! -d "$DEST" ];
+then
+    echo "$DEST not found. Did you forget to attach your external drive?"
+    exit 1
+fi
 
-# devel
-
-# wallpapers
-$RSYNC ~/images/wallpaper $DEST/wallpaper
+for i in "${BKLIST[@]}"
+do
+    rsync -avh \
+        --dry-run \
+        --exclude="node_modules" \
+        --exclude="env" \
+        --exclude="venv" \
+        --exclude=".DS_Store" \
+        --exclude="__pycache__" \
+        --exclude=".cache" \
+        $i \
+        $DEST${i}
+done
