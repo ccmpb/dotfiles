@@ -14,6 +14,7 @@ brew "node"
 brew "curl"
 brew "ctags"
 brew "gnupg"
+brew "plantuml"
 
 cask "iterm2"
 cask "docker"
