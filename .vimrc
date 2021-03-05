@@ -38,7 +38,7 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
-autocmd FileType qf nnoremap <buffer><silent> <esc> :quit<cr>
+" autocmd FileType qf nnoremap <buffer><silent> <esc> :quit<cr>
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
@@ -104,6 +104,7 @@ nnoremap <leader>1 :b1<cr>
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>w <C-w>v<C-w>l
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " set cursorline
 set ai
@@ -215,3 +216,4 @@ let g:fzf_colors =
 
 
 let g:vim_http_split_vertically = 1
+set conceallevel=0
