@@ -13,8 +13,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -26,6 +24,8 @@ Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'wsdjeg/vim-http'
+Plug 'junegunn/gv.vim'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -52,8 +52,10 @@ syntax enable
 set t_Co=256 " enable colours
 colorscheme nord
 
-let g:airline_theme = 'nord'
-let g:airline_powerline_fonts = 1
+let g:lightline = {
+    \ 'colorscheme': 'nord',
+\ }
+" let g:airline_powerline_fonts = 1
 
 command! Maketags !ctags -R
 
@@ -99,7 +101,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap  :set nonumber!:set foldcolumn=0
-nnoremap <Leader>g :Ack!<Space>
+
+nnoremap <Leader>g :Rg<cr>
+nnoremap <leader>b :Buffers<cr>
+
 nnoremap <leader>1 :b1<cr>
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
@@ -191,12 +196,26 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-set laststatus=2
+set laststatus=2 
+" set statusline=
+"
+" set statusline+=%n\ 
+" set statusline+=%f
+" set statusline+=%m 
+" set statusline+=%r
+"
+" set statusline+=%=
+" set statusline+=%-14.(%l,%c%V%)\ %P
+" set statusline+=%l,%c%V
+" set statusline+=%P
+
+" set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P " default 
 
 let g:conflict_marker_enable_highlight = 1
 
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_preview_window = []
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -216,4 +235,8 @@ let g:fzf_colors =
 
 
 let g:vim_http_split_vertically = 1
-set conceallevel=0
+let g:conceallevel=0
+" set noshowmode
+"
+"
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
