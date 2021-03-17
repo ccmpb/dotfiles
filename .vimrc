@@ -102,7 +102,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap  :set nonumber!:set foldcolumn=0
 
-nnoremap <Leader>g :Rg<cr>
+nnoremap <C-f> :Rg<cr>
 nnoremap <leader>b :Buffers<cr>
 
 nnoremap <leader>1 :b1<cr>
