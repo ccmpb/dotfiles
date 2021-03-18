@@ -103,6 +103,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap  :set nonumber!:set foldcolumn=0
 
 nnoremap <C-f> :Rg<cr>
+nnoremap <C-g> :0Glog<cr>
 nnoremap <leader>b :Buffers<cr>
 
 nnoremap <leader>1 :b1<cr>
