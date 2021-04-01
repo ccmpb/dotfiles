@@ -35,6 +35,7 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
+
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
 " autocmd FileType qf nnoremap <buffer><silent> <esc> :quit<cr>
@@ -90,7 +91,9 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
+
 map <leader>S z=
+nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 map <leader>c <c-_><c-_> " T-Comment Shortcut
 map <leader>d :r!date<cr>
 map <leader>e :UltiSnipsEdit<cr>
@@ -106,13 +109,12 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap  :set nonumber!:set foldcolumn=0
 
-nnoremap <C-f> :Rg<cr>
-nnoremap <C-g> :0Glog<cr>
+nnoremap <leader>f :Rg<cr>
+nnoremap <leader>g :0Glog<cr>
 nnoremap <leader>b :Buffers<cr>
 
 nnoremap <leader>1 :b1<cr>
 nnoremap <leader><space> :noh<cr>
-nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
