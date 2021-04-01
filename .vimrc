@@ -13,7 +13,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -44,6 +43,11 @@ autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 
+" replace mappings
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
 " cnoreabbrev Ack Ack!
 
 " set termguicolors
@@ -111,6 +115,8 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+
 
 " set cursorline
 set ai
