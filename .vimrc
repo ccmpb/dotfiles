@@ -25,6 +25,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'wsdjeg/vim-http'
 Plug 'junegunn/gv.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'mileszs/ack.vim'
+Plug 'stefandtw/quickfix-reflector.vim'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -42,6 +44,10 @@ autocmd Filetype html setlocal ts=2 sw=2 sts=0
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
+
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " replace mappings
 nnoremap <Leader>r :%s///g<Left><Left>
@@ -80,37 +86,48 @@ let g:gitgutter_override_sign_column_highlight = 0
 let g:vim_markdown_folding_disabled = 1
 let mapleader=","
 
+" movement
 map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
+nnoremap <leader>1 :b1<cr>
 
+" spelling
 map <leader>S z=
 nnoremap <leader>s :setlocal spell! spelllang=en_us<cr>
+
 map <leader>c <c-_><c-_> " T-Comment Shortcut
 map <leader>d :r!date<cr>
 map <leader>es :UltiSnipsEdit<cr>
 map <Leader>ev :tabnew $MYVIMRC<cr>
 map <leader>h :split<cr>
+nnoremap <leader>w <C-w>v<C-w>l
 map <leader>n :NERDTreeToggle<cr>
 map <leader>v :vsplit<cr>
 map <leader>y "+y
+
 nmap <leader>m <Plug>MarkdownPreviewToggle
+
 nmap <leader>u :PlantUmlOpen 
 nmap <leader>us :PlantUmlSave
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
+
 nnoremap  :set nonumber!:set foldcolumn=0
 
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>g :0Glog<cr>
+nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>b :Buffers<cr>
 
-nnoremap <leader>1 :b1<cr>
 nnoremap <leader><space> :noh<cr>
-nnoremap <leader>w <C-w>v<C-w>l
+cnoreabbrev Ack Ack!
+nnoremap <Leader>/ :Ack!<Space>
+
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 set ai
@@ -120,20 +137,25 @@ set backspace=indent,eol,start
 set colorcolumn=80
 set completeopt=longest,menuone
 set encoding=utf-8
-set expandtab
 set go-=L
 set hidden
+
+" search
 set hlsearch
 set ignorecase
 set incsearch
+set smartcase
+
+" backup
+set noswapfile
+set nowritebackup
+set nobackup
+
 set laststatus=2 " Always show the status line
 set lazyredraw
 set mouse=
-set nobackup
 set noerrorbells
-set noswapfile
 set nowrap
-set nowritebackup
 set number
 set pastetoggle=<leader>p " toggle paste mode  (turns off auto indent)
 set ruler
@@ -142,18 +164,24 @@ set shiftround
 set shiftwidth=4
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 set showmode
-set smartcase
-set softtabstop=4
 set splitright
-set ts=4
 set tw=80
+
+" undo 
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undofile                " Save undos after file closes
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 set updatetime=100
+
 set visualbell
 set wildignore+=*/vendor/**,*/node_modules/**,*.pyc,*venv/**
+
+"tabs
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set smarttab
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -241,3 +269,7 @@ function! QuickFix_toggle()
     copen
 endfunction
 nnoremap <silent> <Leader>q :call QuickFix_toggle()<CR>
+
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+let g:ack_autoclose = 1
+let g:ack_use_cword_for_empty_search = 1
