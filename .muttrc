@@ -42,7 +42,7 @@ unset mime_forward                   # forward attachments as part of body
 set sort = threads
 set sort_aux = last-date-received
 set narrow_tree
-unset collapes_unread
+unset collapse_unread
 set strict_threads
 
 # pager settings
