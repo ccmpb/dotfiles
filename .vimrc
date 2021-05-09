@@ -106,6 +106,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 map <leader>n :NERDTreeToggle<cr>
 map <leader>v :vsplit<cr>
 map <leader>y "+y
+nnoremap <leader>i :IndentLinesToggle<cr>
 
 nmap <leader>m <Plug>MarkdownPreviewToggle
 
