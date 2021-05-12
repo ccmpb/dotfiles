@@ -27,6 +27,7 @@ Plug 'junegunn/gv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'ptester/octo.nvi'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -247,6 +248,7 @@ let g:fzf_colors =
 
 let g:vim_http_split_vertically = 1
 let g:conceallevel=0
+set conceallevel=0
 
 function! RipgrepFzf(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
@@ -266,7 +268,6 @@ function! QuickFix_toggle()
             return
         endif
     endfor
-
     copen
 endfunction
 nnoremap <silent> <Leader>q :call QuickFix_toggle()<CR>
@@ -274,3 +275,14 @@ nnoremap <silent> <Leader>q :call QuickFix_toggle()<CR>
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
 let g:ack_autoclose = 1
 let g:ack_use_cword_for_empty_search = 1
+
+let g:coc_global_extensions = [
+    \ 'coc-sh',
+    \ 'coc-json',
+    \ 'coc-tsserver',
+    \ 'coc-clangd',
+    \ 'coc-solargraph',
+    \ 'coc-pyright',
+    \ 'coc-snippets',
+    \ 'coc-ultisnips',
+\ ]
