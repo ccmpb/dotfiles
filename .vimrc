@@ -29,6 +29,7 @@ Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 call plug#end()
 
+" languages
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
@@ -38,22 +39,16 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
-
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
 autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
+au BufRead /tmp/mutt-* set tw=72 " for mutt
 
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-au BufRead /tmp/mutt-* set tw=72 " for mutt
 
-" replace mappings
-nnoremap <Leader>r :%s///g<Left><Left>
-nnoremap <Leader>rc :%s///gc<Left><Left><Left>
-xnoremap <Leader>r :s///g<Left><Left>
-xnoremap <Leader>rc :s///gc<Left><Left><Left>
 
 " color stuff
 syntax on 
@@ -92,6 +87,12 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
 
+" replace mappings
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+
 " nnoremap <leader>1 :b1<cr>
 " nnoremap <leader>1 :b2<cr>
 
@@ -110,11 +111,12 @@ map <leader>v :vsplit<cr>
 " map <leader>y "+y
 nnoremap <leader>i :IndentLinesToggle<cr>
 
+" preview tool mappings
 nmap <leader>m <Plug>MarkdownPreviewToggle
-
 nmap <leader>u :PlantUmlOpen 
 nmap <leader>us :PlantUmlSave
 
+" coc mappings
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -133,6 +135,7 @@ nnoremap <Leader>/ :Ack!<Space>
 
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+" general settings
 set ai
 set autoread
 set bs=2
@@ -247,9 +250,18 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:vim_http_split_vertically = 1
-let g:conceallevel=0
-set conceallevel=0
+" let g:conceallevel=0
+" set conceallevel=0
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+
+nnoremap <leader>C :call ToggleConcealLevel()<CR>
+
 
 function! RipgrepFzf(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
