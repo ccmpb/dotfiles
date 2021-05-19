@@ -1,3 +1,5 @@
+set nocompatible
+
 call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
@@ -22,12 +24,9 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
-Plug 'wsdjeg/vim-http'
-Plug 'junegunn/gv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'ptester/octo.nvi'
 call plug#end()
 
 au BufNewFile,BufRead *.py
@@ -39,7 +38,6 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
-au BufRead /tmp/mutt-* set tw=72 " for mutt
 
 autocmd Filetype html setlocal ts=2 sw=2 sts=0
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
@@ -49,6 +47,7 @@ autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+au BufRead /tmp/mutt-* set tw=72 " for mutt
 
 " replace mappings
 nnoremap <Leader>r :%s///g<Left><Left>
@@ -56,18 +55,10 @@ nnoremap <Leader>rc :%s///gc<Left><Left><Left>
 xnoremap <Leader>r :s///g<Left><Left>
 xnoremap <Leader>rc :s///gc<Left><Left><Left>
 
-syntax enable
+" color stuff
+syntax on 
 set t_Co=256 " enable colours
 colorscheme nord
-
-let g:lightline = {
-    \ 'colorscheme': 'nord',
-\ }
-
-command! Maketags !ctags -R
-
-filetype plugin indent on
-
 hi Normal ctermbg=none
 highlight ColorColumn ctermbg=0
 highlight GitGutterAdd ctermfg=2
@@ -76,6 +67,14 @@ highlight GitGutterChangeDelete ctermfg=4
 highlight GitGutterDelete ctermfg=1
 highlight NonText ctermbg=none " Fix wrapline colour
 highlight clear SignColumn
+let g:lightline = {
+    \ 'colorscheme': 'nord',
+\ }
+
+command! Maketags !ctags -R
+
+filetype plugin indent on
+
 
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
@@ -92,7 +91,9 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-nnoremap <leader>1 :b1<cr>
+
+" nnoremap <leader>1 :b1<cr>
+" nnoremap <leader>1 :b2<cr>
 
 " spelling
 map <leader>S z=
@@ -106,7 +107,7 @@ map <leader>h :split<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 map <leader>n :NERDTreeToggle<cr>
 map <leader>v :vsplit<cr>
-map <leader>y "+y
+" map <leader>y "+y
 nnoremap <leader>i :IndentLinesToggle<cr>
 
 nmap <leader>m <Plug>MarkdownPreviewToggle
@@ -286,3 +287,5 @@ let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-ultisnips',
 \ ]
+
+set linespace=0
