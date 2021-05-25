@@ -1,0 +1,16 @@
+# Keybindings
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+
+feed-sort-order unreadarticlecount-asc
+articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
+auto-reload yes
+reload-threads 100
+text-width 80
+keep-articles-days 3
