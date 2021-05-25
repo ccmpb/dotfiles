@@ -45,7 +45,7 @@ set wrap=78
 # thread 
 set sort = threads
 set sort_aux = last-date-received
-set narrow_tree
+# set narrow_tree
 unset collapse_unread
 set strict_threads
 
@@ -80,4 +80,4 @@ macro index,pager gf "<change-folder>?"
 # macro pager \cu <pipe-entry>'urlview'<enter> 'Follow links with urlview' 
 # macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>firefox ~/.cache/mutt/mail.html<enter>"
 
-# source ~/.mutt/mutt_colors_okubax.mutt
+source ~/.mutt/nord.theme
