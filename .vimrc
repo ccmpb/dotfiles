@@ -45,9 +45,9 @@ autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
 " color stuff
@@ -107,9 +107,11 @@ map <Leader>ev :tabnew $MYVIMRC<cr>
 map <leader>h :split<cr>
 nnoremap <leader>w <C-w>v<C-w>l
 map <leader>n :NERDTreeToggle<cr>
+map <leader>N :set number!<cr>
 map <leader>v :vsplit<cr>
 " map <leader>y "+y
 nnoremap <leader>i :IndentLinesToggle<cr>
+nnoremap <leader>gg :GitGutterToggle<cr>
 
 " preview tool mappings
 nmap <leader>m <Plug>MarkdownPreviewToggle
