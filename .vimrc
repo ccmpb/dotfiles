@@ -1,5 +1,3 @@
-set nocompatible
-
 call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
@@ -24,9 +22,11 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'diepm/vim-rest-console'
 call plug#end()
 
 " languages
@@ -49,10 +49,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-
-" color stuff
-syntax on 
-set t_Co=256 " enable colours
+" colormiortuii9ol,-p,lo.= juikmn<F12>,.,;:wq stuff
+" syntax on
+syntax enable
+" set t_Co=256 " enable colours
 colorscheme nord
 hi Normal ctermbg=none
 highlight ColorColumn ctermbg=0
@@ -62,9 +62,6 @@ highlight GitGutterChangeDelete ctermfg=4
 highlight GitGutterDelete ctermfg=1
 highlight NonText ctermbg=none " Fix wrapline colour
 highlight clear SignColumn
-let g:lightline = {
-    \ 'colorscheme': 'nord',
-\ }
 
 command! Maketags !ctags -R
 
@@ -114,8 +111,8 @@ nnoremap <leader>i :IndentLinesToggle<cr>
 nnoremap <leader>gg :GitGutterToggle<cr>
 
 " preview tool mappings
-nmap <leader>m <Plug>MarkdownPreviewToggle
-nmap <leader>u :PlantUmlOpen 
+nmap <leader>m :MarkdownPreview<cr>
+nmap <leader>u :PlantUmlOpen
 nmap <leader>us :PlantUmlSave
 
 " coc mappings
@@ -175,7 +172,7 @@ set showmode
 set splitright
 set tw=80
 
-" undo 
+" undo
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undofile                " Save undos after file closes
 set undolevels=1000         " How many undos
@@ -303,3 +300,5 @@ let g:coc_global_extensions = [
 \ ]
 
 set linespace=0
+let g:vrc_output_buffer_name = '__VRC_OUTPUT.json'
+let g:airline_powerline_fonts = 1
