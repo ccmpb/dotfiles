@@ -14,3 +14,4 @@ auto-reload yes
 reload-threads 100
 text-width 80
 keep-articles-days 3
+download-full-page yes
