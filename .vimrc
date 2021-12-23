@@ -27,21 +27,23 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'diepm/vim-rest-console'
+Plug 'tpope/vim-sleuth'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " languages
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
-
-autocmd Filetype html setlocal ts=2 sw=2 sts=0
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
-autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4 |
+"     \ set softtabstop=4 |
+"     \ set shiftwidth=4 |
+"     \ set textwidth=79 |
+"     \ set expandtab |
+"     \ set autoindent |
+"     \ set fileformat=unix
+"
+" autocmd Filetype html setlocal ts=2 sw=2 sts=0
+" autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+" autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
@@ -124,8 +126,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nnoremap  :set nonumber!:set foldcolumn=0
 
 nnoremap <leader>f :Rg<cr>
-nnoremap <leader>g :0Glog<cr>
-nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>g :0Gclog<cr>
+nnoremap <leader>gb :Git blame --date short<cr>
 nnoremap <leader>b :Buffers<cr>
 
 nnoremap <leader><space> :noh<cr>
@@ -302,3 +304,7 @@ let g:coc_global_extensions = [
 set linespace=0
 let g:vrc_output_buffer_name = '__VRC_OUTPUT.json'
 let g:airline_powerline_fonts = 1
+
+set cursorline
+
+" set foldcolumn=1
