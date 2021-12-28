@@ -22,13 +22,15 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'diepm/vim-rest-console'
 Plug 'tpope/vim-sleuth'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " languages
@@ -170,7 +172,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 set shiftround
 set shiftwidth=4
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
-set showmode
+" set showmode
 set splitright
 set tw=80
 
@@ -307,4 +309,22 @@ let g:airline_powerline_fonts = 1
 
 set cursorline
 
-" set foldcolumn=1
+nnoremap   <silent>   <C-t>   :FloatermToggle<CR>
+tnoremap   <silent>   <C-t>   <C-\><C-n>:FloatermToggle<CR>
+let g:floaterm_position = 'bottom'
+let g:floaterm_autoclose = 2
+let g:floaterm_wintype = 'split'
+
+let g:lightline = {
+  \ 'colorscheme': 'nord',
+  \ 'component_function': {
+  \   'fugitive': 'LightlineFugitive',
+  \ }
+\ }
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+	    return FugitiveHead()
+    endif
+	return ''
+endfunction
+set noshowmode
