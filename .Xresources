@@ -1,0 +1,16 @@
+#include ".xrdb/color/nord"
+#include ".xrdb/fonts/meslo"
+
+URxvt*scrollBar:        false
+URxvt.copyCommand:      xclip -i -selection clipboard
+URxvt.pasteCommand:     xclip -o -selection clipboard
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+urxvt*depth: 32
+URxvt.background: [99]#2f343f
+
+urxvt*geometry: 156x42
