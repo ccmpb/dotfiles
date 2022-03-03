@@ -11,6 +11,6 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 urxvt*depth: 32
-URxvt.background: [99]#2f343f
+URxvt.background: [95]#2f343f
 
-urxvt*geometry: 156x42
+URxvt*geometry: 156x42
