@@ -4,3 +4,5 @@ vim/undo
 .newsboat/history.cmdline
 .newsboat/history.search
 
+*.asc
+
