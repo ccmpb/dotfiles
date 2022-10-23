@@ -1,0 +1,16 @@
+env
+venv
+.cache
+.npm
+node_modules
+src/
+snap/
+.git
+__pycache__
+.vim/*
+.var
+.npm-packages
+.mail
+.ansible
+.local
+.eclipse

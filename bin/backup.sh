@@ -8,8 +8,16 @@
 #                             |_|
 #
 
-DEST=/Volumes/ccdata/mbp
-BKLIST=(~/bin ~/devel ~/images ~/docs ~/Documents ~/Library/Thunderbird) 
+set -eo pipefail
+# macbook backup volume
+# DEST=/Volumes/ccdata/mbp
+
+# local test volume
+DEST=/tmp/bk
+SOURCE=~
+DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
+BACKUP_PATH=$DEST/$DATETIME
+LATEST=$DEST/latest
 
 if [ ! -d "$DEST" ];
 then
@@ -17,16 +25,6 @@ then
     exit 1
 fi
 
-for i in "${BKLIST[@]}"
-do
-    rsync -avh \
-        --dry-run \
-        --exclude="node_modules" \
-        --exclude="env" \
-        --exclude="venv" \
-        --exclude=".DS_Store" \
-        --exclude="__pycache__" \
-        --exclude=".cache" \
-        $i \
-        $DEST${i}
-done
+rsync -avh --dry-run --exclude-from=".rsyncignore" --link-dest $LATEST $SOURCE $BACKUP_PATH
+rm -rf $LATEST 
+ln -s $BACKUP_PATH $LATEST
