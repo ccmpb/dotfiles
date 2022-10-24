@@ -9,22 +9,26 @@
 #
 
 set -eo pipefail
+
 # macbook backup volume
 # DEST=/Volumes/ccdata/mbp
 
+# linux usb drive
+DEST=/media/colin/EB41-ED00/bk
+
+# linux lacie raid
+# DEST=
+
 # local test volume
-DEST=/tmp/bk
+# DEST=/tmp/bk
+
 SOURCE=~
-DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
-BACKUP_PATH=$DEST/$DATETIME
-LATEST=$DEST/latest
+NAME=latest-laptop
+BACKUP_PATH="${DEST}/${NAME}"
 
-if [ ! -d "$DEST" ];
-then
-    echo "$DEST not found. Did you forget to attach your external drive?"
-    exit 1
-fi
+mkdir -p "${DEST}"
 
-rsync -avh --dry-run --exclude-from=".rsyncignore" --link-dest $LATEST $SOURCE $BACKUP_PATH
-rm -rf $LATEST 
-ln -s $BACKUP_PATH $LATEST
+rsync -avhL \
+    "${SOURCE}/" \
+    --exclude-from=".rsyncignore" \
+    "${BACKUP_PATH}"
