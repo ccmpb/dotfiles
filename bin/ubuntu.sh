@@ -20,4 +20,5 @@ sudo apt-get install \
 	vlc \
 	newsboat \
 	w3m \
+	ncal \
 
