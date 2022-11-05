@@ -22,8 +22,6 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
@@ -31,21 +29,10 @@ Plug 'diepm/vim-rest-console'
 Plug 'tpope/vim-sleuth'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'puremourning/vimspector'
+Plug 'liuchengxu/graphviz.vim'
 call plug#end()
 
-" languages
-" au BufNewFile,BufRead *.py
-"     \ set tabstop=4 |
-"     \ set softtabstop=4 |
-"     \ set shiftwidth=4 |
-"     \ set textwidth=79 |
-"     \ set expandtab |
-"     \ set autoindent |
-"     \ set fileformat=unix
-"
-" autocmd Filetype html setlocal ts=2 sw=2 sts=0
-" autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
-" autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
 autocmd! bufwritepost .vimrc source % " autosource the vimrc when it changes
 au BufRead /tmp/mutt-* set tw=72 " for mutt
 
@@ -53,20 +40,19 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" colormiortuii9ol,-p,lo.= juikmn<F12>,.,;:wq stuff
 " syntax on
 syntax enable
-" set t_Co=256 " enable colours
 colorscheme nord
-hi Normal ctermbg=none
-highlight ColorColumn ctermbg=0
-highlight GitGutterAdd ctermfg=2
-highlight GitGutterChange ctermfg=3
-highlight GitGutterChangeDelete ctermfg=4
-highlight GitGutterDelete ctermfg=1
-highlight NonText ctermbg=none " Fix wrapline colour
-highlight clear SignColumn
 
+" hi Normal ctermbg=none
+" highlight ColorColumn ctermbg=0
+" highlight GitGutterAdd ctermfg=2
+" highlight GitGutterChange ctermfg=3
+" highlight GitGutterChangeDelete ctermfg=4
+" highlight GitGutterDelete ctermfg=1
+" highlight NonText ctermbg=none " Fix wrapline colour
+" highlight clear SignColumn
+"
 command! Maketags !ctags -R
 
 filetype plugin indent on
@@ -233,6 +219,7 @@ endfunc
 
 let g:conflict_marker_enable_highlight = 1
 
+set showcmd
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_preview_window = []
@@ -328,3 +315,8 @@ function! LightlineFugitive()
 	return ''
 endfunction
 set noshowmode
+
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+command Exec set splitright | vnew | set filetype=sh | read !sh #
