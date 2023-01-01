@@ -1,5 +1,5 @@
 ## dotfiles
-
+Here lies my dotfiles.  Pretty standard faire including zsh, vim and tmux.
 ### Backup pgp key
 ```
 gpg --armor --export > pgp-public-keys.asc
@@ -13,4 +13,5 @@ gpg --import pgp-public-keys.asc
 gpg --import pgp-private-keys.asc
 gpg --import-ownertrust pgp-ownertrust.asc
 ```
+
 
