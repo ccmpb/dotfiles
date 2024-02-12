@@ -15,6 +15,7 @@ brew "curl"
 brew "ctags"
 brew "gnupg"
 brew "plantuml"
+brew "appcleaner"
 
 cask "iterm2"
 cask "docker"
